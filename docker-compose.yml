@@ -1,16 +1,6 @@
 version: '3.8'
 
 services:
-  backend:
-    build: .
-    ports:
-      - "8000:8000"
-    depends_on:
-      - postgres
-      - redis
-      - mongo
-
-  # Servicio de MongoDB
   mongo:
     image: mongo:latest
     container_name: mongo_db
@@ -22,7 +12,6 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  # Servicio de Redis
   redis:
     image: redis:latest
     container_name: redis_cache
@@ -31,7 +20,6 @@ services:
     volumes:
       - redis_data:/data
 
-  # Servicio de PostgreSQL
   postgres:
     image: postgres:latest
     container_name: postgres_db
@@ -44,7 +32,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  # Servicio de pgAdmin para gestionar PostgreSQL
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
@@ -52,9 +39,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "8080:80"  # Puerto 8080 en tu máquina local, 80 en el contenedor
+      - "8080:80"
     depends_on:
-      - postgres  # Asegura que PostgreSQL esté levantado antes de iniciar pgAdmin
+      - postgres
     volumes:
       - pgadmin_data:/var/lib/pgadmin
 
