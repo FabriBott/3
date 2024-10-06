@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - mongo
+
   # Servicio de MongoDB
   mongo:
     image: mongo:latest
