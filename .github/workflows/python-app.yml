@@ -51,6 +51,6 @@ jobs:
       - name: Build and push Docker image
         if: success() # This runs only if previous steps succeeded
         run: |
-          docker build -t your-dockerhub-username/your-repo-name:latest .
+          docker build -t fpicadoalvarado/repo1:latest .
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           docker push fpicadoalvarado/repo1:latest
